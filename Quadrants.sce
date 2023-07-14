@@ -1,0 +1,20 @@
+clc; clear;close;
+I=imread('sample.jpg');
+figure(0);imshow(I);
+[rows, columns] = size(I);
+middle_row = floor(rows/2);
+middle_column = floor(columns/2);
+UL = I(1:middle_row, 1:middle_column,:);
+UR = I(1:middle_row, middle_column+1:2*middle_column,:);
+LL = I(middle_row+1:2*middle_row,1:middle_column,:);
+LR = I(middle_row+1:2*middle_row, middle_column+1:2*middle_column,:);
+[size(UL);size(UR);size(LL);size(LR);]
+figure(1);
+subplot(2,2,1);
+title('Upper Left');imshow(UL);
+subplot(2,2,2);
+title('Upper Right');imshow(UR);
+subplot(2,2,3);
+title('Lower Left');imshow(LL);
+subplot(2,2,4);
+title('Lower Right');imshow(LR);
