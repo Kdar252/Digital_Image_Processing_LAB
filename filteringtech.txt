@@ -1,0 +1,41 @@
+close;
+clc;
+clear;
+im = rgb2gray(imread('A.jpg'));
+subplot(5,2,1);
+title('original image');
+imshow(im);
+filter = fspecial('log');
+imf = imfilter(im, filter);
+subplot(5,2,2);
+//title('log filtered image');
+//imshow(imf);
+
+sobel_filter = fspecial('sobel');
+sobel_imf = imfilter(im, sobel_filter);
+subplot(5,2,3);
+title('sobel filtered image');
+imshow(sobel_imf);
+c_sobel=edge(im,'sobel');
+subplot(5,2,4);title('sobel edge');
+imshow(c_sobel);
+
+prewitt_filter = fspecial('prewitt');
+prewitt_imf = imfilter(im, prewitt_filter);
+subplot(5,2,5);
+title('prewitt filtered image');
+imshow(prewitt_imf);
+c_prewitt=edge(im,'prewitt');
+subplot(5,2,6);
+title('prewitt edge');
+imshow(c_prewitt);
+
+log_filter = fspecial('log');
+log_imf = imfilter(im, log_filter);
+subplot(5,2,7);
+title('log filter image');
+imshow(log_imf);
+c_log=edge(im,'log');
+subplot(5,2,8);
+title('log');
+imshow(c_log);
