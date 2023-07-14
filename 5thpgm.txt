@@ -1,0 +1,42 @@
+clc; clear; close;
+I = imread("Lenna-low-contrast-image.jpg") ;
+figure(0);title("Original Image");
+imshow(I);
+
+Image_imadjust = imadjust(I);
+figure(1);
+//subplot(4,1,2);
+title("Adjusted Image");
+imshow(Image_imadjust);
+
+[m n]= size (I) ;
+a=I;
+for i =1:256
+    b(i) = length ( find ( a ==( i -1) ) ) ;
+end
+pbb=b/(m*n ) ;
+pb(1) = pbb (1) ;
+for i=2:256
+    pb(i)=pb(i-1)+pbb(i);
+end
+s = pb*255;
+sb = uint8 ( round (s ) ) ;
+index =0;
+for i =1: m
+for j =1: n
+index = double ( a (i , j ) ) +1; 
+hea (i , j ) = sb ( index ) ; 
+end
+end
+figure(2);
+title("histogram equalization image");
+imshow(hea);
+a=I;
+c=im2bw(a,0.5);
+figure(2);title('black and white image');
+imshow(c);
+
+d= edge(c,'canny',0.20);
+figure(3);
+title('canny edge detection');
+imshow(d);
